@@ -26,7 +26,7 @@ And a Special Thanks to [TheSpeedX](https://github.coom/TheSpeedX) for optimisin
 
 Just make sure apktool and apksigner are properly installed.
 
-NOTE:- APKTool may not work in Termux.
+NOTE:- If you are using APKTOOL on Termux then it may not work. I mean it works but it fails to output the Manifest in proper encoding.
 
 ## Usage
 
