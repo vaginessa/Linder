@@ -26,7 +26,7 @@ And a Special Thanks to [TheSpeedX](https://github.coom/TheSpeedX) for optimisin
 
 Just make sure apktool and apksigner are properly installed.
 
-NOTE:- If you are using APKTOOL on Termux then it may not work. I mean it works but it fails to output the Manifest in proper encoding.
+NOTE:- If you are using APKTOOL on Termux then it may not work. I mean it works but it fails to output the Manifest in proper encoding. And because of it the script throws an UnicodeDecodeError, which is fixable if opened as ISO-8859-1 but it throws another error.(I think it is also fixable, I'll try to fix it in the next update :p)
 
 ## Usage
 
