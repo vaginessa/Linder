@@ -31,9 +31,9 @@ def Update():
 	if os.name == 'nt':
 		pass # Will add for windows soon.
 	else:
-		os.system("which wget>>w.txt")
+		os.system("which curl>>w.txt")
 		if os.path.getsize('w.txt') == 0:
-			print(RED + "wget is not installed, please install it" + WHITE)
+			print(RED + "curl is not installed, please install it" + WHITE)
 			os.system(rm + " w.txt")
 			exit()
 		else:
@@ -42,7 +42,7 @@ def Update():
 			oo = o.read()
 			o.close()
 			os.system(rm + ' .ver')
-			os.system('wget https://github.com/R37r0-Gh057/Linder/raw/master/.ver')
+			os.system('curl -LO https://github.com/R37r0-Gh057/Linder/raw/master/.ver')
 			u = open('.ver','r').read()
 			if int(oo) == int(u):
 				print(YELLOW + 'No updates available' + WHITE)
