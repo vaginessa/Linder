@@ -20,7 +20,7 @@ It just automates the following:-
 
 There are some apps like FacebookLite which are a little protected by this method. The MainActivity smali file specified in the Manifest is not present. I'll come up with something in the next update.
 
-And a Special Thanks to [TheSpeedX](https://github.coom/TheSpeedX) for optimising this script.
+And a Special Thanks to [TheSpeedX](https://github.coom/TheSpeedX) for optimising this script and naming it. LMAO.
 
 ## Installation
 
