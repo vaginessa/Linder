@@ -32,7 +32,7 @@ def Update():
 		pass # Will add for windows soon.
 	else:
 		os.system("which wget>>w.txt")
-		if os.path.size('w.txt') == 0:
+		if os.path.getsize('w.txt') == 0:
 			print(RED + "wget is not installed, please install it" + WHITE)
 			os.system(rm + " w.txt")
 			exit()
