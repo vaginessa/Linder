@@ -2,13 +2,13 @@
 
 ## About
 
-This simple Python3 script will bind a Metasploit generated android payload with any other apk.
+This POC script embeds an metasploit generated android payload to any other APKs.
 
 It just automates the following:-
 
   [+] Copying payload smali files into target app.
   
-  [+] Finding target app's MainActivity smali files.
+  [+] Finding target app's MainActivity smali file.
   
   [+] Finding Hookpoint and adding hook there.
   
