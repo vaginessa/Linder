@@ -1,4 +1,4 @@
-import re,os,sys,subprocess,glob,threading
+import os,sys,subprocess
 from xml.dom.minidom import parseString
 from time import sleep
 
