@@ -44,7 +44,7 @@ def Update():
 			o = open('.ver','r')
 			oo = o.read()
 			o.close()
- 			os.system(rm + ' .ver')
+			os.system(rm + ' .ver')
 			os.system('curl -LO https://github.com/R37r0-Gh057/Linder/raw/master/.ver')
 			u = open('.ver','r').read()
 			if int(oo) == int(u):
