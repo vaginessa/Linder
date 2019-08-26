@@ -26,7 +26,7 @@ And a Special Thanks to [TheSpeedX](https://github.coom/TheSpeedX) for optimisin
 
 Just make sure apktool and apksigner are properly installed.
 
-**NOTE FOR TERMUX**:- Wont work on termux even if you have apktool installed. Because on termux, the AndroidManifest.xml decompiled by apktool is not in proper encoding (I ran the latest version 2.4.0). But on using the`--force-manifest` option in apktool we can get the xml in proper encoding, but on compiling the target app the xml wont compile... And there is no other way to do it. Check [this issue on apktool's official repo.](https://github.com/iBotPeaches/Apktool/issues/1699)
+**NOTE FOR TERMUX**:- Wont work on termux even if you have apktool installed. Because on termux, Apktool does not decode the AndroidManifest.xml unless `--force-manifest` option is used. (I ran the latest version 2.4.0). But on compiling the target app the xml wont be included... And there is no other way to do it. Check [this issue on apktool's official repo.](https://github.com/iBotPeaches/Apktool/issues/1699)
 
 ## Usage
 
