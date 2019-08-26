@@ -188,7 +188,6 @@ def Bind():
 	# STEP 1.
 		
 		try:
-			#Dont Change os.popen To subprocess It Would Fill YOur Screen
 			if os.path.isdir("TempP"):
 				print(CYAN + "[+] Cleaning Temporary Files..." + WHITE)
 				subprocess.call(rm + " TempP",shell=True)
