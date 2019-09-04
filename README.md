@@ -1,5 +1,7 @@
 # Linder
 
+version 1.1
+
 ## About
 
 This POC script embeds an metasploit generated android payload to any other APKs.
@@ -20,13 +22,13 @@ It just automates the following:-
 
 There are some apps like FacebookLite which are a little protected by this method. The MainActivity smali file specified in the Manifest is not present. I'll come up with something in the next update.
 
-And a Special Thanks to [TheSpeedX](https://github.coom/TheSpeedX) for optimising this script and naming it. LMAO.
+And a Special Thanks to [TheSpeedX](https://github.coom/TheSpeedX) for optimising this script.
 
 ## Installation
 
 Just make sure apktool and apksigner are properly installed.
 
-**NOTE FOR TERMUX**:- Wont work on termux even if you have apktool installed. Because on termux, Apktool does not decode the AndroidManifest.xml unless `--force-manifest` option is used. (I ran the latest version 2.4.0). But on compiling the target app the xml wont be included... And there is no other way to do it. Check [this issue on apktool's official repo.](https://github.com/iBotPeaches/Apktool/issues/1699)
+**NOTE FOR TERMUX**:- It wasnt possible for this script to run in termux in the previous version because its apktool cant decompile aps properly, but thanks to [Hax4us's APKMOD](https://github.com/Hax4us/Apkmod), its now possible. It Run `termux-install.sh` to install it and other dependencies.
 
 ## Usage
 
